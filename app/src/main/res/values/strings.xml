@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">EWT App</string>
+    <!-- home strings -->
+
+
+    <string name="ek_img_content">ExportKit Image</string>
+    <string name="assets_string">Electricity &amp; Water Tracking</string>
+    <string name="kw_per_year_string">Electricity Graph</string>
+    <string name="kw_per_year_ek1_string">Water Graph</string>
+    <string name="payment_string">Total Consumption</string>
+    <string name="assets_ek1_string">Your Details</string>
+    <string name="add_new_card_ek2_string">Add</string>
+    <string name="screen_title_string">Dashboard</string>
+    <string name="dasboard_string">Home</string>
+    <string name="electricity_ek2_string">Electricity</string>
+    <string name="water_ek2_string">Water</string>
+    <string name="profile_ek3_string">Profile</string>
+    <string name="title_string">Electricity</string>
+    <string name="kw_per_year_ek2_string">---------- W/month</string>
+    <string name="price_string">Production</string>
+    <string name="kw_per_year_ek3_string">---------- Rs/kW</string>
+    <string name="price_ek1_string">Price</string>
+    <string name="date_string">----------</string>
+    <string name="info_string">Date</string>
+    <string name="kw_per_year_ek4_string">Live Tracking ></string>
+    <string name="title_ek1_string">Water</string>
+    <string name="kw_per_year_ek5_string">---------- L/month</string>
+    <string name="price_ek2_string">Production</string>
+    <string name="kw_per_year_ek6_string">---------- Rs/L</string>
+    <string name="price_ek3_string">Price</string>
+    <string name="date_ek1_string">----------</string>
+    <string name="info_ek1_string">Date</string>
+    <string name="kw_per_year_ek7_string">Live Tracking ></string>
+    <string name="otp_verification">OTP Verification</string>
+    <string name="verify">Verify</string>
+
+    <string name="etC1_description">Description of etC1 EditText</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Home</string>
+    <string name="electricity">Electricity</string>
+    <string name="water">Water</string>
+    <string name="profile">Profile</string>
+    <string name="settings">Settings</string>
+    <string name="reset_electricity">Reset (Electricity)</string>
+
+</resources>

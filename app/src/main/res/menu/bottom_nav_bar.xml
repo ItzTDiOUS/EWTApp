@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home_icon"
+        android:title="@string/home"
+        android:icon="@drawable/dashboard_s"
+        />
+    <item
+        android:id="@+id/electricity_icon"
+        android:title="@string/electricity"
+
+        android:icon="@drawable/lightning_bolt"/>
+    <item
+        android:id="@+id/blur_icon"
+        android:title="@string/water"
+        android:icon="@drawable/blur"/>
+    <item
+        android:id="@+id/settings_icon"
+        android:title="@string/settings"
+        android:icon="@drawable/log"
+        android:onClick="showOverlayLayout"/>
+
+</menu>

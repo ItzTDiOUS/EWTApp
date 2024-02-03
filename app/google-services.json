@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "840705453633",
+    "firebase_url": "https://app-equinox-default-rtdb.firebaseio.com",
+    "project_id": "app-equinox",
+    "storage_bucket": "app-equinox.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:840705453633:android:de071a4b9488459051a0c0",
+        "android_client_info": {
+          "package_name": "com.example.ewtapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1QMxxWWEzAUeveW3U5bGw5ujYzwTgt-8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:840705453633:android:266b504cefbe42b051a0c0",
+        "android_client_info": {
+          "package_name": "com.example.workingapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1QMxxWWEzAUeveW3U5bGw5ujYzwTgt-8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

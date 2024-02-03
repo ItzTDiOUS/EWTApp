@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/overlayLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <RelativeLayout
+        android:id="@+id/big"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/_bg__ikona_ek1_shape"
+        android:backgroundTint="@color/white"
+        android:elevation="20dp"
+
+        >
+
+        <Button
+            android:id="@+id/btnResetElectricity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="@string/reset_electricity"
+            android:onClick="resetElectricity"
+            android:backgroundTint="@color/rectangle12a_color"
+
+            android:elevation="20dp"
+            />
+
+        <Button
+            android:id="@+id/btnResetWater"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:backgroundTint="@color/rectangle12a_color"
+            android:text="Reset (Water)"
+            android:elevation="20dp"/>
+
+        <!-- Add the ID btnLogoutOverlay to the Logout button -->
+        <Button
+            android:id="@+id/btnLogoutOverlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="130dp"
+            android:text="Logout"
+            android:onClick="logout"
+            android:backgroundTint="@color/red"
+            android:elevation="20dp"/>
+    </RelativeLayout>
+
+</LinearLayout>
