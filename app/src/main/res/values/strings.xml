@@ -44,4 +44,23 @@
     <string name="settings">Settings</string>
     <string name="reset_electricity">Reset (Electricity)</string>
 
+
+
+
+    <string name="wh_consumed_string">Wh consumed</string>
+    <string name="________string">------</string>
+    <string name="____________________string">------------------</string>
+    <string name="day_string">Day</string>
+    <string name="week_string">Week</string>
+    <string name="all_time_string">All time</string>
+    <string name="payment_ek1_string">Estimated Bill</string>
+    <string name="________ek1_string">------</string>
+    <string name="this_month_string">this  month</string>
+    <string name="bill_history_string">Bill History ></string>
+    <string name="________ek2_string">------</string>
+    <string name="saved_for_string">Saved for</string>
+    <string name="on_previous_month_string">on previous month</string>
+    <string name="________ek3_string">------</string>
+    <string name="saved_for_ek1_string">Saved for</string>
+    <string name="on_previous_week_string">on previous week</string>
 </resources>

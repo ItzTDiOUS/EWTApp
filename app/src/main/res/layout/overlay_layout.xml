@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/overlayLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    app:layout_constraintTop_toTopOf="@+id/bottomNav">
+
 
     <RelativeLayout
         android:id="@+id/big"
@@ -14,7 +17,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
         android:background="@drawable/_bg__ikona_ek1_shape"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="#EFEDF2"
         android:elevation="20dp"
 
         >
@@ -27,8 +30,10 @@
             android:layout_marginTop="20dp"
             android:text="@string/reset_electricity"
             android:onClick="resetElectricity"
-            android:backgroundTint="@color/rectangle12a_color"
+            android:textStyle="bold"
 
+android:textColor="@color/black"
+            android:backgroundTint="@color/white"
             android:elevation="20dp"
             />
 
@@ -36,10 +41,14 @@
             android:id="@+id/btnResetWater"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:layout_centerInParent="true"
-            android:backgroundTint="@color/rectangle12a_color"
+            android:backgroundTint="@color/white"
+            android:elevation="20dp"
             android:text="Reset (Water)"
-            android:elevation="20dp"/>
+            android:textColor="@color/black"
+            android:onClick="resetWater"
+            android:textStyle="bold"/>
 
         <!-- Add the ID btnLogoutOverlay to the Logout button -->
         <Button
@@ -50,8 +59,10 @@
             android:layout_marginTop="130dp"
             android:text="Logout"
             android:onClick="logout"
+            android:textColor="@color/white"
             android:backgroundTint="@color/red"
-            android:elevation="20dp"/>
+            android:elevation="20dp"
+            android:textStyle="bold"/>
     </RelativeLayout>
 
 </LinearLayout>

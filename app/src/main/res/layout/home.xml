@@ -32,7 +32,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
+        android:backgroundTint="#EFEDF2"
         android:id="@+id/home"
         >
 
@@ -378,14 +378,6 @@
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="55dp">
 
-                            <View
-                                android:id="@+id/_bg__ratingbox_ek1"
-                                android:layout_width="272dp"
-                                android:layout_height="34dp"
-                                android:layout_marginStart="0dp"
-                                android:layout_marginTop="0dp"
-                                android:background="@drawable/_bg__electro_analy_ek1_shape" />
-
 
                             <RelativeLayout
                                 android:id="@+id/ratings"
@@ -411,19 +403,28 @@
                                     android:text="--------"
                                     android:textColor="@color/assets_color"
                                     android:textSize="35sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:elevation="20dp"/>
 
-                          <!--      <TextView
-                                    android:id="@+id/price"
-                                    android:layout_width="71.2dp"
-                                    android:layout_height="19.2dp"
-                                    android:layout_marginLeft="0dp"
-                                    android:layout_marginTop="50dp"
+                                <View
+                                    android:id="@+id/_bg__ratingbox_ek1"
+                                    android:layout_width="272dp"
+                                    android:layout_height="34dp"
+                                    android:layout_marginStart="0dp"
+                                    android:layout_marginTop="0dp"
+                                    android:background="@drawable/_bg__electro_analy_ek1_shape" />
 
-                                    android:text="@string/price_string"
-                                    android:textColor="@color/black"
-                                    android:textSize="12sp" />
--->
+                                <!--      <TextView
+                                          android:id="@+id/price"
+                                          android:layout_width="71.2dp"
+                                          android:layout_height="19.2dp"
+                                          android:layout_marginLeft="0dp"
+                                          android:layout_marginTop="50dp"
+
+                                          android:text="@string/price_string"
+                                          android:textColor="@color/black"
+                                          android:textSize="12sp" />
+      -->
                             </RelativeLayout>
 
 
