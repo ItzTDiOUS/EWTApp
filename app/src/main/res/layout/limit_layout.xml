@@ -1,0 +1,65 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/electricityLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Electricity Limit"
+        android:layout_marginTop="16dp"
+        android:textSize="18sp"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:hint="Enter electricity limit"
+        android:layout_below="@id/electricityLabel"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/okButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editText1"
+        android:text="OK"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/waterLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Water Limit"
+        android:layout_below="@id/okButton1"
+        android:layout_marginTop="16dp"
+        android:textSize="18sp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:hint="Enter water limit"
+        android:layout_below="@id/waterLabel"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="10dp"/>
+
+    <Button
+        android:id="@+id/okButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editText2"
+        android:layout_marginTop="-60dp"
+        android:text="OK"
+       android:layout_marginStart="10dp"
+        android:layout_toRightOf="@id/editText2"/>
+
+</RelativeLayout>

@@ -81,7 +81,7 @@
                 >
 
                 <View   android:id="@+id/_bg__frame_4_ek1"
-                    android:background="@drawable/_bg__frame_4_ek1_shape"
+
                     android:layout_marginStart="0dp"
                     android:layout_marginTop="0dp"
                     android:layout_width="282dp"
@@ -162,11 +162,11 @@
 
                             <View
                                 android:id="@+id/_bg__cons_ek1"
-                                android:layout_width="300dp"
-                                android:layout_height="176dp"
+                                android:background="@drawable/_bg__cons_ek1_shape"
                                 android:layout_marginStart="0dp"
                                 android:layout_marginTop="0dp"
-                                android:background="@drawable/_bg__cons_ek1_shape" />
+                                android:layout_width="300dp"
+                                android:layout_height="176dp" />
 
                         </RelativeLayout>
 
@@ -385,7 +385,7 @@
                             android:layout_marginTop="25dp"
                             android:text="@string/title_string"
                             android:elevation="20dp"
-                            android:textColor="@color/assets_color"
+                            android:textColor="@color/white"
                             android:textSize="20sp"
                             android:textStyle="bold" />
 
@@ -420,7 +420,7 @@
                                     android:layout_marginStart="0dp"
                                     android:layout_marginTop="9dp"
                                     android:text="--------"
-                                    android:textColor="@color/assets_color"
+                                    android:textColor="@color/white"
                                     android:textSize="35sp"
                                     android:textStyle="bold"
                                     android:elevation="20dp"/>
@@ -550,7 +550,7 @@
                                 android:layout_marginLeft="179dp"
                                 android:layout_marginTop="5dp"
                                 android:text="Analyse >"
-                                android:textColor="@color/assets_color"
+                                android:textColor="@color/white"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
@@ -572,7 +572,7 @@
                             android:layout_height="164dp"
                             android:layout_marginStart="0dp"
                             android:layout_marginTop="0dp"
-                            android:background="@drawable/blue_background" />
+                            android:background="@drawable/_bg__electro_analy_ek1_shape" />
 
                         <TextView
                             android:id="@+id/title_ek1"
@@ -581,7 +581,7 @@
                             android:layout_marginLeft="16dp"
                             android:layout_marginTop="25dp"
                             android:text="@string/title_ek1_string"
-                            android:textColor="@color/assets_color"
+                            android:textColor="@color/white"
                             android:textSize="20sp"
                             android:textStyle="bold" />
 
@@ -626,7 +626,7 @@
 
                                     android:layout_marginBottom="0dp"
                                     android:text="--------"
-                                    android:textColor="@color/assets_color"
+                                    android:textColor="@color/white"
                                     android:textSize="35sp"
                                     android:textStyle="bold" />
 
@@ -747,7 +747,7 @@
                                 android:layout_marginLeft="179dp"
                                 android:layout_marginTop="5dp"
                                 android:text="Analyse >"
-                                android:textColor="@color/assets_color"
+                                android:textColor="@color/white"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 

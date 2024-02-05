@@ -28,6 +28,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -39,9 +40,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity {
 
+
+public class MainActivity extends AppCompatActivity {
     private boolean doubleBackToExitPressedOnce = false;
+
+    long electricityLimit;
+    long waterLimit;
+
     private TextView ee, ww;
     private PopupWindow overlayPopup;
 
@@ -56,11 +62,14 @@ public class MainActivity extends AppCompatActivity {
     private static final String FIREBASE_ELECTRICITY_FIELD = "electricity";
     private static final String FIREBASE_WATER_FIELD = "water";
 
-    private static final String FIREBASE_ELECTRICITY_CHILD_NODE = "voltage";
+    private static final String FIREBASE_ELECTRICITY_CHILD_NODE = "total_energy";
     private static final String FIREBASE_WATER_CHILD_NODE = "total_water_used";
 
     private static final String CHANNEL_ID = "My Channel";
     private static final int NOTIFICATION_ID = 100;
+
+    private TextInputLayout ElecLimitText,WatLimText;
+    int c;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,8 +82,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         setContentView(R.layout.home);
+        View LL=LayoutInflater.from(this).inflate(R.layout.limit_layout,null);
 
-
+        ElecLimitText=LL.findViewById(R.id.editText1);
+        WatLimText=LL.findViewById(R.id.editText2);
 
         // Notification
         Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.alert, null);
@@ -139,6 +150,10 @@ public class MainActivity extends AppCompatActivity {
                     Electricity_data = (electricityLong != null) ? String.valueOf(electricityLong) : "";
                     Water_data = (waterLong != null) ? String.valueOf(waterLong) : "";
 
+                    // Check if the limits are exceeded
+                    checkLimitsAndShowOverlay(electricityLong, waterLong);
+
+                    // Update the UI
                     updateUI();
                 }
             }
@@ -148,6 +163,23 @@ public class MainActivity extends AppCompatActivity {
                 // Handle onCancelled if needed
             }
         });
+    }
+
+    private void checkLimitsAndShowOverlay(Long electricity, Long water) {
+        // Set your electricity and water limit here
+        electricityLimit = 100;
+        waterLimit = 15;
+
+        if (electricity != null && electricity > electricityLimit) {
+            // Electricity limit exceeded, show the overlay
+            showOverWarninglayLayout();
+        }
+
+
+        else if (water != null && water > waterLimit) {
+            // Water limit exceeded, show the overlay
+            showOverWarninglayLayout();
+        }
     }
 
     private void updateUI() {
@@ -203,6 +235,9 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
+
+
+
         // Inflate the overlay layout
         View overlayView = LayoutInflater.from(this).inflate(R.layout.overlay_layout, null);
 
@@ -240,9 +275,59 @@ public class MainActivity extends AppCompatActivity {
         overlayPopup.showAtLocation(overlayView, 0, 0, 0);
     }
 
+
+
+
     public void resetWater(View view) {
         // Handle Reset Water button click
         resetWaterInFirebase();
+    }
+
+    public void showOverWarninglayLayout() {
+
+        if(c==0){
+            // If the overlay is already showing, do nothing
+            if (overlayPopup != null && overlayPopup.isShowing()) {
+                return;
+            }
+
+            // Inflate the warning overlay layout
+            View warningOverlayView = LayoutInflater.from(this).inflate(R.layout.warning_layout, null);
+
+            // Find the close button in the warning overlay using the correct ID
+            Button closeButton = warningOverlayView.findViewById(R.id.btnCloseWarningOverlay);
+
+            // Set an OnClickListener for the close button
+            closeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    c=1;
+                    // Dismiss the warning overlay when the close button is clicked
+                    if (overlayPopup != null && overlayPopup.isShowing()) {
+                        overlayPopup.dismiss();
+                    }
+                }
+            });
+
+            // Create a PopupWindow for the warning overlay
+            PopupWindow newPopup = new PopupWindow(warningOverlayView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT, true);
+
+            // Enable touch events for the underlying activity
+            newPopup.setTouchable(true);
+
+            // Set dismiss listener to remove the dim background when the popup is dismissed
+            newPopup.setOnDismissListener(() -> {
+                // Remove the background color when the overlay is dismissed
+                overlayPopup = null;
+            });
+
+            // Show the PopupWindow for the warning overlay
+            newPopup.showAtLocation(warningOverlayView, 0, 0, 0);
+
+            // Update the reference to the new popup
+            overlayPopup = newPopup;
+        }
+
     }
 
 
@@ -305,4 +390,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }

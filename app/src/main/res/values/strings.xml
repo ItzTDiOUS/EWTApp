@@ -45,8 +45,8 @@
     <string name="reset_electricity">Reset (Electricity)</string>
 
 
-
-
+    <string name="water_limit_exceeded">Water Limit Exceeded</string>
+    <string name="electricity_limit_exceeded">Electricity Limit Exceeded</string>
     <string name="wh_consumed_string">Wh consumed</string>
     <string name="________string">------</string>
     <string name="____________________string">------------------</string>

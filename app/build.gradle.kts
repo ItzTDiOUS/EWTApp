@@ -52,6 +52,7 @@ dependencies {
     implementation ("androidx.viewpager:viewpager:1.0.0") // or the version you want to use
 
 
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
 
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
