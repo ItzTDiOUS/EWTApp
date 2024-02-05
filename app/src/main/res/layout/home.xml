@@ -144,21 +144,32 @@
                             />
 
 
-                        <RelativeLayout android:id="@+id/cons"
+                        <RelativeLayout
+                            android:id="@+id/cons"
                             android:layout_marginTop="30dp"
                             android:layout_marginStart="0dp"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            >
+                            android:layout_height="wrap_content">
 
-                            <View   android:id="@+id/_bg__cons_ek1"
-                                android:background="@drawable/_bg__cons_ek1_shape"
+                            <ImageView
+                                android:id="@+id/imageView"
+                                android:layout_width="300dp"
+                                android:layout_height="176dp"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/graphs"
+                                android:elevation="20dp"
+                                android:contentDescription="TODO" />
+
+                            <View
+                                android:id="@+id/_bg__cons_ek1"
+                                android:layout_width="300dp"
+                                android:layout_height="176dp"
                                 android:layout_marginStart="0dp"
                                 android:layout_marginTop="0dp"
-                                android:layout_width="300dp"
-                                android:layout_height="176dp" />
+                                android:background="@drawable/_bg__cons_ek1_shape" />
 
                         </RelativeLayout>
+
 
                     </RelativeLayout>
 
@@ -195,6 +206,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             >
+                            <ImageView
+                                android:id="@+id/imageView2"
+                                android:layout_width="300dp"
+                                android:layout_height="176dp"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/graphs"
+                                android:elevation="20dp"
+                                android:contentDescription="TODO" />
 
                             <View   android:id="@+id/_bg__cons_ek3"
                                 android:background="@drawable/_bg__cons_ek1_shape"
