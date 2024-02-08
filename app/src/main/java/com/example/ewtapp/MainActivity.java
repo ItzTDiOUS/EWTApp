@@ -28,6 +28,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.res.ResourcesCompat;
 
+import com.github.mikephil.charting.components.YAxis;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,6 +40,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+
+import java.util.ArrayList;
 import java.util.Objects;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -48,6 +51,8 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
+import java.util.List;
+
 
 
 
@@ -55,9 +60,10 @@ public class MainActivity extends AppCompatActivity {
     private boolean doubleBackToExitPressedOnce = false;
     private LineChart chartElectricity;
     private LineChart chartWater;
-    long electricityLimit;
-    long waterLimit;
+    public long electricityLimit;
+    public long waterLimit;
 
+    private List<Entry> electricityEntries;
     private TextView ee, ww, user;
     private PopupWindow overlayPopup;
 
@@ -77,7 +83,12 @@ public class MainActivity extends AppCompatActivity {
     private static final int NOTIFICATION_ID = 100;
 
     private TextInputLayout ElecLimitText,WatLimText;
+
+
     int c;
+
+    public MainActivity() {
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -88,10 +99,13 @@ public class MainActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide();
 
         setContentView(R.layout.home);
+
         chartElectricity = findViewById(R.id.electricity_chart);
+        electricityEntries = new ArrayList<>();
         chartWater = findViewById(R.id.water_chart);
 
         // Customize chart settings if needed
+
         customizeChart(chartElectricity);
         customizeChart(chartWater);
 
@@ -99,11 +113,21 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        View LL=LayoutInflater.from(this).inflate(R.layout.limit_layout,null);
+        View LL = LayoutInflater.from(this).inflate(R.layout.limit_layout, null);
 
-        TextInputLayout ElecLimitLayout = LL.findViewById(R.id.textInputLayout1);
-        TextInputLayout WatLimLayout = LL.findViewById(R.id.textInputLayout2);
 
+
+
+        TextView analyzeElec=findViewById(R.id.kw_per_year_ek4);
+        TextView analyzeWat=findViewById(R.id.kw_per_year_ek7);
+
+
+        analyzeElec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenLimPage();
+            }
+        });
 
 
 
@@ -147,12 +171,32 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
     }
 
-    private void customizeChart(LineChart chart) {
+    private void OpenLimPage() {
+        Intent intent=new Intent(getApplicationContext(), LimPage.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void customizeChart(@NonNull LineChart chart) {
         // Customize chart settings if needed
         // For example, enable touch gestures, set X-axis position, etc.
 
         chart.setTouchEnabled(true);
         chart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+
+        // Get the left Y-axis
+        YAxis leftAxis = chart.getAxisLeft();
+
+        // Enable the left Y-axis
+        leftAxis.setEnabled(true);
+
+        // Get the right Y-axis
+        YAxis rightAxis = chart.getAxisRight();
+
+        // Disable the right Y-axis
+        rightAxis.setEnabled(false);
+
+
         // Add other customization settings if needed
     }
 
@@ -163,28 +207,27 @@ public class MainActivity extends AppCompatActivity {
         updateChart(chartWater, waterValue, "Water");
     }
     private void updateChart(LineChart chart, long value, String label) {
-        // Update the LineChart with a new data point
-
         LineData data = chart.getData();
 
         if (data == null) {
             data = new LineData();
             chart.setData(data);
         }
-        if (data != null) {
-            ILineDataSet set = data.getDataSetByIndex(0);
 
-            if (set != null && set.getEntryCount() > 5) {
-                set.removeFirst(); // Remove the oldest point
-                chart.notifyDataSetChanged();
-                chart.invalidate();
-                chart.moveViewToX(data.getEntryCount());
+        ILineDataSet set = data.getDataSetByIndex(0);
 
+        if (set != null && set.getEntryCount() > 6) {
+            // Remove the oldest point
+            Entry removedEntry = set.getEntryForIndex(0);
+            set.removeEntry(removedEntry);
 
+            // Adjust x-values of remaining entries
+            List<Entry> entries = ((LineDataSet) set).getValues();
 
+            for (Entry entry : entries) {
+                entry.setX(entry.getX() - 1f);
             }
         }
-        ILineDataSet set = data.getDataSetByIndex(0);
 
         if (set == null) {
             set = createDataSet(label);
@@ -197,8 +240,6 @@ public class MainActivity extends AppCompatActivity {
         // Notify the chart that the data has changed
         chart.notifyDataSetChanged();
         chart.invalidate();
-        chart.moveViewToX(data.getEntryCount());
-        // Add other chart customization if needed
     }
 
     private LineDataSet createDataSet(String label) {
@@ -247,7 +288,7 @@ public class MainActivity extends AppCompatActivity {
                     // Update the UI
                     updateUI();
 
-                    // Update the charts
+                     //Update the charts
                     updateCharts(electricityLong != null ? electricityLong : 0,
                             waterLong != null ? waterLong : 0);
 
@@ -267,9 +308,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkLimitsAndShowOverlay(Long electricity, Long water) {
-        // Set your electricity and water limit here
-        electricityLimit = 100;
-        waterLimit = 15;
 
         if (electricity != null && electricity > electricityLimit) {
             // Electricity limit exceeded, show the overlay
