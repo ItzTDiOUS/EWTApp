@@ -69,11 +69,11 @@
             android:layout_centerHorizontal="true"
          android:backgroundTint="@color/background"
             android:text="Close"
-            android:textSize="10dp"
+            android:textSize="10sp"
 
             android:textColor="#808080"
 
-            android:elevation="20dp"
+            android:elevation="30dp"
             android:textStyle="bold"/>
     </RelativeLayout>
 

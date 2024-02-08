@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -40,22 +41,29 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+
+
 
 
 public class MainActivity extends AppCompatActivity {
     private boolean doubleBackToExitPressedOnce = false;
-
+    private LineChart chartElectricity;
+    private LineChart chartWater;
     long electricityLimit;
     long waterLimit;
 
-    private TextView ee, ww;
+    private TextView ee, ww, user;
     private PopupWindow overlayPopup;
 
     private String Username;
 
     private String Electricity_data, Water_data;
-
-    private Button Refresh;
 
     private static final String FIREBASE_ADMIN_NODE = "Admin";
     private static final String FIREBASE_USERNAME_FIELD = "username";
@@ -79,13 +87,27 @@ public class MainActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Objects.requireNonNull(getSupportActionBar()).hide();
 
-
-
         setContentView(R.layout.home);
+        chartElectricity = findViewById(R.id.electricity_chart);
+        chartWater = findViewById(R.id.water_chart);
+
+        // Customize chart settings if needed
+        customizeChart(chartElectricity);
+        customizeChart(chartWater);
+
+        // Fetch data from Firebase and update charts
+
+
+
         View LL=LayoutInflater.from(this).inflate(R.layout.limit_layout,null);
 
-        ElecLimitText=LL.findViewById(R.id.editText1);
-        WatLimText=LL.findViewById(R.id.editText2);
+        TextInputLayout ElecLimitLayout = LL.findViewById(R.id.textInputLayout1);
+        TextInputLayout WatLimLayout = LL.findViewById(R.id.textInputLayout2);
+
+
+
+
+
 
         // Notification
         Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.alert, null);
@@ -110,18 +132,87 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         Username = getLoginStatus();
-        Refresh = findViewById(R.id.refresh_button);
+        Button refresh = findViewById(R.id.refresh_button);
         ee = findViewById(R.id.electricity_data);
         ww = findViewById(R.id.water_data);
+        user=findViewById(R.id.naam);
         Button signoutButton = findViewById(R.id.logout_button);
         signoutButton.setOnClickListener(v -> logoutAndNavigateToLogin());
 
-        Refresh.setOnClickListener(v -> fetchDataFromFirebase());
+        refresh.setOnClickListener(v -> fetchDataFromFirebase());
+
         fetchDataFromFirebase(); // Initial data fetch
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
     }
+
+    private void customizeChart(LineChart chart) {
+        // Customize chart settings if needed
+        // For example, enable touch gestures, set X-axis position, etc.
+
+        chart.setTouchEnabled(true);
+        chart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+        // Add other customization settings if needed
+    }
+
+
+    private void updateCharts(long electricityValue, long waterValue) {
+        // Update the LineCharts with new data points
+        updateChart(chartElectricity, electricityValue, "Electricity");
+        updateChart(chartWater, waterValue, "Water");
+    }
+    private void updateChart(LineChart chart, long value, String label) {
+        // Update the LineChart with a new data point
+
+        LineData data = chart.getData();
+
+        if (data == null) {
+            data = new LineData();
+            chart.setData(data);
+        }
+        if (data != null) {
+            ILineDataSet set = data.getDataSetByIndex(0);
+
+            if (set != null && set.getEntryCount() > 5) {
+                set.removeFirst(); // Remove the oldest point
+                chart.notifyDataSetChanged();
+                chart.invalidate();
+                chart.moveViewToX(data.getEntryCount());
+
+
+
+            }
+        }
+        ILineDataSet set = data.getDataSetByIndex(0);
+
+        if (set == null) {
+            set = createDataSet(label);
+            data.addDataSet(set);
+        }
+
+        // Add a new entry to the dataset
+        data.addEntry(new Entry(set.getEntryCount(), value), 0);
+
+        // Notify the chart that the data has changed
+        chart.notifyDataSetChanged();
+        chart.invalidate();
+        chart.moveViewToX(data.getEntryCount());
+        // Add other chart customization if needed
+    }
+
+    private LineDataSet createDataSet(String label) {
+        // Create a LineDataSet with the provided label
+        LineDataSet set = new LineDataSet(null, label);
+        set.setDrawCircles(true);
+        set.setDrawValues(true);
+        set.setCircleRadius(4f);
+        set.setLineWidth(2f);
+        set.setColor(Color.BLUE);
+        return set;
+    }
+
+
 
     private void createNotificationChannel() {
         NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -155,6 +246,16 @@ public class MainActivity extends AppCompatActivity {
 
                     // Update the UI
                     updateUI();
+
+                    // Update the charts
+                    updateCharts(electricityLong != null ? electricityLong : 0,
+                            waterLong != null ? waterLong : 0);
+
+                    chartElectricity.notifyDataSetChanged();
+                    chartElectricity.invalidate();
+
+                    chartWater.notifyDataSetChanged();
+                    chartWater.invalidate();
                 }
             }
 
@@ -185,11 +286,13 @@ public class MainActivity extends AppCompatActivity {
     private void updateUI() {
         ee.setText(String.format("%s Kwh", Electricity_data != null ? Electricity_data : ""));
         ww.setText(String.format("%s L", Water_data != null ? Water_data : ""));
+
         fetchDataFromFirebase();
     }
 
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
         if (doubleBackToExitPressedOnce) {
             finishAffinity();
             return;
