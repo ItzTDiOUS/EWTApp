@@ -1,0 +1,135 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+	<!-- 
+	/*
+	 *	This content is generated from the API File Info.
+	 *	(Alt+Shift+Ctrl+I).
+	 *
+	 *	@desc 		
+	 *	@file 		analytics
+	 *	@date 		Thursday 08th of February 2024 04:59:20 AM
+	 *	@title 		Page 1
+	 *	@author 	
+	 *	@keywords 	
+	 *	@generator 	Export Kit v1.3.figma
+	 *
+	 */
+	-->
+	<RelativeLayout android:id="@+id/analytics"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent" >
+
+		<RelativeLayout android:id="@+id/content_container" 
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" >
+
+			<View   android:id="@+id/_bg__analytics"
+				android:background="@drawable/_bg__analytics_shape"
+				 android:layout_marginStart="0dp"
+				android:layout_marginTop="0dp"
+				android:layout_width="500dp"
+				android:layout_height="1075dp" />
+
+			<ImageView android:id="@+id/vector"
+				android:src="@drawable/vector"
+				android:contentDescription="vector"
+				 android:layout_marginStart="23.6dp"
+				android:layout_marginTop="70.46dp"
+				android:layout_width="16.8dp"
+				android:layout_height="11.09dp" />
+
+
+
+			<TextView android:id="@+id/payment"
+				android:textStyle="bold"
+				android:textSize="20sp"
+				android:textColor="@color/screen_title_color"
+				android:layout_marginLeft="20dp"
+				android:layout_marginTop="120dp"
+				android:layout_width="231dp"
+				android:layout_height="38dp"
+				android:text="Informative Videos"
+				 />
+
+
+
+			</RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<RelativeLayout android:id="@+id/bill_box"
+				android:layout_marginTop="200dp"
+				android:layout_marginStart="20dp"
+				android:layout_width="wrap_content"
+				android:layout_centerHorizontal="true"
+				android:layout_height="wrap_content"
+				>
+
+
+				<com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+
+					android:id="@+id/video1"
+					android:background="@drawable/_bg__bill_box_ek1_shape"
+					 android:layout_marginStart="0dp"
+					android:layout_marginTop="0dp"
+					android:layout_width="336dp"
+					android:layout_height="167dp"
+					app:autoPlay="false"/>
+
+				<com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView   android:id="@+id/video2"
+					android:background="@drawable/_bg__bill_box_ek1_shape"
+					android:layout_marginStart="0dp"
+					android:layout_marginTop="200dp"
+					app:autoPlay="false"
+					android:layout_width="336dp"
+					android:layout_height="167dp" />
+
+
+				<com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView   android:id="@+id/video3"
+					android:background="@drawable/_bg__bill_box_ek1_shape"
+					android:layout_marginStart="0dp"
+					android:layout_marginTop="400dp"
+					android:layout_width="336dp"
+					android:layout_height="167dp"
+					app:autoPlay="false"/>
+				<com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView   android:id="@+id/video4"
+					android:background="@drawable/_bg__bill_box_ek1_shape"
+					android:layout_marginStart="0dp"
+					android:layout_marginTop="600dp"
+					android:layout_width="336dp"
+					android:layout_height="167dp"
+					app:autoPlay="false"/>
+
+
+
+			</RelativeLayout>
+
+
+
+
+
+
+
+
+
+		</RelativeLayout>
+
+	</ScrollView>
