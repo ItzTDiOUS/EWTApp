@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/overlayLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="600dp"
     android:orientation="vertical"
     android:gravity="center"
     app:layout_constraintTop_toTopOf="@+id/bottomNav">
@@ -19,6 +19,7 @@
         android:background="@drawable/_bg__ikona_ek1_shape"
         android:backgroundTint="#EFEDF2"
         android:elevation="20dp"
+        android:layout_gravity="center"
 
         >
 
@@ -65,4 +66,4 @@ android:textColor="@color/black"
             android:textStyle="bold"/>
     </RelativeLayout>
 
-</LinearLayout>
+</FrameLayout>

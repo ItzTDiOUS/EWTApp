@@ -4,26 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity"
     android:layout_height="wrap_content">
-    <FrameLayout
-        android:id="@+id/frame_layout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNav"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
-    </FrameLayout>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/bottomNav"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:backgroundTint="@color/white"
-        app:menu="@menu/bottom_nav_bar"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -37,32 +18,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/refresh_button"
-                android:layout_marginLeft="50dp"
-                android:layout_marginTop="850dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/rectangle12a_color"
-                android:text="refresh"
-                />
 
-            <Button
-                android:layout_marginStart="270dp"
-                android:id="@+id/logout_button"
-                android:layout_marginLeft="50dp"
-                android:layout_marginTop="850dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/rectangle12a_color"
-                android:text="Logout"/>
+
+
 
             <View   android:id="@+id/_bg__home"
                 android:background="@drawable/_bg__home_shape"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="0dp"
                 android:layout_width="500dp"
-                android:layout_height="1000dp" />
+                android:layout_height="900dp" />
 
             <RelativeLayout android:id="@+id/frame_4"
                 android:layout_marginTop="51dp"
@@ -155,6 +120,7 @@
                         android:layout_marginStart="320dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="30dp"
                         >
 
                         <TextView android:id="@+id/kw_per_year_ek1"
@@ -200,6 +166,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="120dp"
+
                 android:text="--------------"
                 android:textColor="@color/assets_color"
                 android:textSize="20sp"
@@ -215,9 +182,34 @@
                 android:textColor="@color/assets_color"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <View
+                android:layout_marginStart="270dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="700dp"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:background="@color/background"
+                />
+            <TextView
+                android:layout_marginStart="270dp"
+                android:id="@+id/logout_button"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="700dp"
+                android:layout_width="100dp"
+                android:layout_alignParentLeft="true"
+                android:layout_height="30dp"
+                android:backgroundTint="@color/rectangle12a_color"
+                android:textColor="@color/black"
+                android:text="VIDEOS >"
+                android:elevation="20dp"
+                android:textStyle="bold"/>
+        </RelativeLayout>
 
             <RelativeLayout android:id="@+id/your_assets"
-                android:layout_marginTop="160dp"
+                android:layout_marginTop="169dp"
                 android:layout_marginStart="30dp"
                 android:layout_width="wrap_content"
                 android:layout_height="38dp"
@@ -229,8 +221,8 @@
                     android:layout_marginLeft="0dp"
 
                     android:layout_width="125dp"
-                    android:layout_height="38dp"
-                    android:text="@string/assets_ek1_string"
+                    android:layout_height="40dp"
+                    android:text="Consumption"
                     />
             </RelativeLayout>
 
@@ -258,12 +250,12 @@
 
             <HorizontalScrollView
                 android:id="@+id/horizontal1"
-                android:layout_width="match_parent"
-                android:layout_height="380dp">
+                android:layout_width="500dp"
+                android:layout_height="397dp">
 
                 <RelativeLayout
                     android:id="@+id/__analy"
-                    android:layout_width="wrap_content"
+                    android:layout_width="500dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="216dp">
@@ -290,8 +282,7 @@
                             android:layout_height="164dp"
                             android:layout_marginStart="0dp"
                             android:layout_marginTop="0dp"
-                            android:background="@drawable/_bg__electro_analy_ek1_shape"
-                           />
+                            android:background="@drawable/_bg__electro_analy_ek1_shape" />
 
                         <TextView
                             android:id="@+id/title"
@@ -299,11 +290,47 @@
                             android:layout_height="38dp"
                             android:layout_marginLeft="16dp"
                             android:layout_marginTop="25dp"
-                            android:text="@string/title_string"
                             android:elevation="20dp"
+                            android:text="@string/title_string"
                             android:textColor="@color/white"
                             android:textSize="20sp"
                             android:textStyle="bold" />
+                        <RelativeLayout
+                              android:layout_width="107dp"
+                              android:layout_height="38dp"
+                               android:layout_marginLeft="150dp"
+                               android:layout_marginTop="25dp"
+                              android:elevation="20dp">
+                             <View
+
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            />
+
+                            <TextView
+                                android:id="@+id/voltage_disp"
+                                android:layout_width="55dp"
+                                android:layout_height="38dp"
+
+
+                                android:layout_centerVertical="true"
+                                android:elevation="20dp"
+                                android:text="Voltage:"
+                                android:textColor="@color/white"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                            <TextView
+                                android:id="@+id/voltage"
+                                android:layout_width="50dp"
+                                android:layout_height="38dp"
+                                android:layout_alignParentRight="true"
+
+                                android:elevation="20dp"
+                                android:text="-----"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
 
                         <RelativeLayout
                             android:id="@+id/ratingbox"
@@ -319,32 +346,19 @@
                                 android:layout_marginStart="0dp"
                                 android:layout_marginTop="0dp">
 
-                                <View
-                                    android:id="@+id/_bg__ratings_ek1"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="95dp"
-                                    android:layout_marginStart="0dp"
-                                    android:layout_marginTop="0dp" />
 
                                 <TextView
                                     android:id="@+id/electricity_data"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="150dp"
                                     android:layout_height="75.4dp"
-                                    android:layout_marginStart="0dp"
                                     android:layout_marginTop="9dp"
+                                    android:elevation="20dp"
                                     android:text="--------"
                                     android:textColor="@color/white"
                                     android:textSize="35sp"
-                                    android:textStyle="bold"
-                                    android:elevation="20dp"/>
+                                    android:textStyle="bold" />
 
-                                <View
-                                    android:id="@+id/_bg__ratingbox_ek1"
-                                    android:layout_width="272dp"
-                                    android:layout_height="34dp"
-                                    android:layout_marginStart="0dp"
-                                    android:layout_marginTop="0dp"
-                                    android:background="@drawable/_bg__electro_analy_ek1_shape" />
+
 
                                 <!--      <TextView
                                           android:id="@+id/price"
@@ -359,103 +373,29 @@
       -->
                             </RelativeLayout>
 
-                            <RelativeLayout
-                                android:id="@+id/pricing"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="151dp"
-                                android:layout_marginTop="0dp">
 
-                                <View
-                                    android:id="@+id/_bg__pricing_ek1"
 
-                                    android:layout_width="100dp"
-                                    android:layout_height="34dp"
-                                    android:layout_marginStart="0dp"
-                                    android:layout_marginTop="0dp" />
-
-                              <!--  <TextView
-                                    android:id="@+id/electricity_price"
-                                    android:layout_width="113.4dp"
-                                    android:layout_height="28.4dp"
-                                    android:layout_marginLeft="0dp"
-                                    android:layout_marginTop="0dp"
-                                    android:text="@string/kw_per_year_ek3_string"
-                                    android:textColor="@color/assets_color"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
-                                <TextView
-                                    android:id="@+id/price_ek1"
-                                    android:layout_width="39.2dp"
-                                    android:layout_height="19.2dp"
-                                    android:layout_marginLeft="0dp"
-                                    android:layout_marginTop="18dp"
-                                    android:text="@string/price_ek1_string"
-                                    android:textColor="@color/price_color"
-                                    android:textSize="12sp" />
-                                -->
-                            </RelativeLayout>
                         </RelativeLayout>
 
                         <RelativeLayout
                             android:id="@+id/date_box"
-                            android:layout_width="wrap_content"
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
+                            android:layout_alignRight="@id/_bg__electro_analy_ek1"
                             android:layout_marginTop="114dp">
 
-                            <View
-                                android:id="@+id/_bg__date_box_ek1"
-                                android:layout_width="272dp"
-                                android:layout_height="34dp"
-                                android:layout_marginStart="0dp"
-                                android:layout_marginTop="0dp"
-                                android:background="@drawable/_bg__electro_analy_ek1_shape" />
 
-                            <RelativeLayout
-                                android:id="@+id/frame_4_ek4"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="0dp"
-                                android:layout_marginTop="0dp">
 
-                              <!--  <View
-                                    android:id="@+id/_bg__frame_4_ek5"
-                                    android:layout_width="53dp"
-                                    android:layout_height="34dp"
-                                    android:layout_marginStart="0dp"
-                                    android:layout_marginTop="0dp" />
 
-                                <TextView
-                                    android:id="@+id/date"
-                                    android:layout_width="66.4dp"
-                                    android:layout_height="28.4dp"
-                                    android:layout_marginLeft="0dp"
-                                    android:layout_marginTop="0dp"
-                                    android:text="@string/date_string"
-                                    android:textColor="@color/assets_color"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:id="@+id/info"
-                                    android:layout_width="38.2dp"
-                                    android:layout_height="19.2dp"
-                                    android:layout_marginLeft="0dp"
-                                    android:layout_marginTop="18dp"
-                                    android:text="@string/info_string"
-                                    android:textColor="@color/price_color"
-                                    android:textSize="12sp" />
-                            -->
-                            </RelativeLayout>
 
                             <TextView
                                 android:id="@+id/kw_per_year_ek4"
                                 android:layout_width="106.4dp"
                                 android:layout_height="28.4dp"
-                                android:layout_marginLeft="179dp"
+                                android:layout_marginLeft="0dp"
                                 android:layout_marginTop="5dp"
-                                android:text="Analyse >"
+                                android:text="Set Limit >"
                                 android:textColor="@color/white"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
@@ -468,7 +408,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="320dp"
-                        android:layout_marginTop="0dp">
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="30dp">
 
                         <View
                             android:id="@+id/_bg__electro_analy_ek3"
@@ -488,21 +429,51 @@
                             android:textColor="@color/white"
                             android:textSize="20sp"
                             android:textStyle="bold" />
-
                         <RelativeLayout
+                            android:layout_width="110dp"
+                            android:layout_height="38dp"
+                            android:layout_marginLeft="150dp"
+                            android:layout_marginTop="25dp"
+                            android:elevation="20dp">
+                            <View
+
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                />
+
+                            <TextView
+                                android:id="@+id/flow_disp"
+                                android:layout_width="70dp"
+                                android:layout_height="38dp"
+
+
+                                android:elevation="20dp"
+                                android:text="Flow Rate:"
+                                android:textColor="@color/white"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                            <TextView
+                                android:id="@+id/flow"
+                                android:layout_width="50dp"
+                                android:layout_height="38dp"
+                                android:layout_alignParentRight="true"
+
+                                android:elevation="20dp"
+                                android:text="-----"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                        </RelativeLayout>
+
+                            <RelativeLayout
                             android:id="@+id/ratingbox_ek2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="64dp">
 
-                            <View
-                                android:id="@+id/_bg__ratingbox_ek3"
-                                android:layout_width="272dp"
-                                android:layout_height="34dp"
-                                android:layout_marginStart="0dp"
-                                android:layout_marginTop="0dp"
-                                />
+
 
 
                             <RelativeLayout
@@ -512,17 +483,11 @@
                                 android:layout_marginStart="0dp"
                                 android:layout_marginTop="0dp">
 
-                                <View
-                                    android:id="@+id/_bg__ratings_ek3"
 
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="95dp"
-                                    android:layout_marginStart="0dp"
-                                    android:layout_marginTop="0dp" />
 
                                 <TextView
                                     android:id="@+id/water_data"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="150dp"
                                     android:layout_height="75.4dp"
                                     android:layout_marginStart="0dp"
                                     android:layout_marginTop="9dp"
@@ -533,7 +498,7 @@
                                     android:textSize="35sp"
                                     android:textStyle="bold" />
 
-                               <!-- <TextView
+                                <!-- <TextView
                                     android:id="@+id/price_ek2"
                                     android:layout_width="71.2dp"
                                     android:layout_height="19.2dp"
@@ -546,105 +511,26 @@
 
                             </RelativeLayout>
 
-                            <RelativeLayout
-                                android:id="@+id/pricing_ek2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="144dp"
-                                android:layout_marginTop="0dp">
 
-                                <View
-                                    android:id="@+id/_bg__pricing_ek3"
-
-                                    android:layout_width="85dp"
-                                    android:layout_height="34dp"
-                                    android:layout_marginStart="0dp"
-                                    android:layout_marginTop="0dp" />
-
-                              <!--  <TextView
-                                    android:id="@+id/water_price"
-                                    android:layout_width="98.4dp"
-                                    android:layout_height="28.4dp"
-                                    android:layout_marginLeft="0dp"
-                                    android:layout_marginTop="0dp"
-                                    android:text="@string/kw_per_year_ek6_string"
-                                    android:textColor="@color/assets_color"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:id="@+id/price_ek3"
-                                    android:layout_width="39.2dp"
-                                    android:layout_height="19.2dp"
-                                    android:layout_marginLeft="0dp"
-                                    android:layout_marginTop="18dp"
-                                    android:text="@string/price_ek3_string"
-                                    android:textColor="@color/price_color"
-                                    android:textSize="12sp" />
-                                -->
-                            </RelativeLayout>
 
                         </RelativeLayout>
 
                         <RelativeLayout
                             android:id="@+id/date_box_ek2"
-                            android:layout_width="wrap_content"
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
+                            android:layout_alignRight="@id/_bg__electro_analy_ek3"
                             android:layout_marginTop="114dp">
 
-                            <View
-                                android:id="@+id/_bg__date_box_ek3"
-                                android:layout_width="272dp"
-                                android:layout_height="34dp"
-                                android:layout_marginStart="0dp"
-                                android:layout_marginTop="0dp"
-                                />
-
-                            <RelativeLayout
-                                android:id="@+id/frame_4_ek6"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="0dp"
-                                android:layout_marginTop="0dp">
-
-                              <!--  <View
-                                    android:id="@+id/_bg__frame_4_ek7"
-                                    android:layout_width="53dp"
-                                    android:layout_height="34dp"
-                                    android:layout_marginStart="0dp"
-                                    android:layout_marginTop="0dp" />
-
-                                <TextView
-                                    android:id="@+id/date_ek1"
-                                    android:layout_width="66.4dp"
-                                    android:layout_height="28.4dp"
-                                    android:layout_marginLeft="0dp"
-                                    android:layout_marginTop="0dp"
-                                    android:text="@string/date_ek1_string"
-                                    android:textColor="@color/assets_color"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:id="@+id/info_ek1"
-                                    android:layout_width="38.2dp"
-                                    android:layout_height="19.2dp"
-                                    android:layout_marginLeft="0dp"
-                                    android:layout_marginTop="18dp"
-                                    android:text="@string/info_ek1_string"
-                                    android:textColor="@color/price_color"
-                                    android:textSize="12sp" />
-                                -->
-                            </RelativeLayout>
 
                             <TextView
                                 android:id="@+id/kw_per_year_ek7"
                                 android:layout_width="106.4dp"
                                 android:layout_height="28.4dp"
-                                android:layout_marginLeft="179dp"
+                                android:layout_marginLeft="0dp"
                                 android:layout_marginTop="5dp"
-                                android:text="Analyse >"
+                                android:text="Set Limit >"
                                 android:textColor="@color/white"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
@@ -655,5 +541,26 @@
                 </RelativeLayout>
             </HorizontalScrollView>
         </RelativeLayout>
+
     </ScrollView>
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+    </FrameLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/bottomNav"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@color/white"
+        app:menu="@menu/bottom_nav_bar"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

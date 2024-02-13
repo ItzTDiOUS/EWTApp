@@ -41,6 +41,8 @@ android {
 
 dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
+   // Use the latest version
+
     implementation("com.google.android.material:material:1.11.0")
     implementation("com.google.firebase:firebase-database:20.3.0")
     implementation("com.google.ar.sceneform:filament-android:1.17.1")
@@ -60,4 +62,9 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.6.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth")
+
+
+
+    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
+    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:custom-ui:12.1.0")
 }

@@ -75,14 +75,38 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".CustomPlayerUiController"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".VideoPlayer"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
 
         <activity
         android:name=".LimPage"
         android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
+
         </intent-filter>
     </activity>
+
+        <activity
+            android:name=".ElectricityFragment"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+            </intent-filter>
+        </activity>
 
     </application>
 </manifest>

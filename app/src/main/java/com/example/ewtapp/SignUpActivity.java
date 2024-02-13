@@ -60,7 +60,7 @@ public class SignUpActivity extends AppCompatActivity {
             firebaseDatabase = FirebaseDatabase.getInstance();
             reference = firebaseDatabase.getReference("Admin");
 
-            UserData userData = new UserData(Phone_no,username, password,"10","8");
+            UserData userData = new UserData(Phone_no,username, password);
 
             // Use push() to generate a unique key for each user
             reference.child(username).setValue(userData);

@@ -3,12 +3,435 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".WaterFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+
+
+        <ScrollView android:id="@+id/analytics"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" >
+
+            <RelativeLayout android:id="@+id/content_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+
+                <View   android:id="@+id/bg_analytics"
+
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_width="500dp"
+                    android:layout_height="1075dp" />
+
+                <ImageView android:id="@+id/vector2"
+                    android:src="@drawable/vector"
+                    android:contentDescription="vector"
+                    android:layout_marginStart="23.6dp"
+                    android:layout_marginTop="70.46dp"
+                    android:layout_width="16.8dp"
+                    android:layout_height="11.09dp" />
+
+
+
+                <TextView android:id="@+id/payment"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/screen_title_color"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="120dp"
+                    android:layout_width="231dp"
+                    android:layout_height="38dp"
+                    android:text="Total Water Consumption"
+                    />
+
+
+                <RelativeLayout android:id="@+id/amount_generated"
+                    android:layout_marginTop="208dp"
+                    android:layout_marginStart="142dp"
+                    android:layout_width="108dp"
+                    android:layout_height="110dp"
+                    android:backgroundTint="@color/white"
+                    >
+
+                    <View   android:id="@+id/bg_amount_generated_ek1"
+                        android:background="@drawable/_bg__electro_analy_ek1_shape"
+                        android:backgroundTint="@color/white"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+
+                    <TextView android:id="@+id/wh_consumed"
+                        android:layout_gravity="center_horizontal|center"
+                        android:gravity="center"
+                        android:textSize="12sp"
+                        android:textColor="@color/wh_consumed_color"
+                        android:layout_marginLeft="13.5dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_width="83.2dp"
+                        android:layout_height="19.2dp"
+                        android:text="@string/wh_consumed_string"
+                        />
+
+                    <TextView android:id="@+id/hiuahud"
+                        android:textStyle="bold"
+                        android:layout_gravity="center_horizontal|center"
+                        android:gravity="center"
+                        android:textSize="48sp"
+                        android:textColor="@color/_bg__amount_generated_ek1_color"
+
+                        android:layout_marginTop="16dp"
+                        android:layout_width="118dp"
+                        android:layout_height="70.8dp"
+                        android:text="----"
+                        />
+
+                    <ImageView android:id="@+id/polygon_2"
+                        android:src="@drawable/polygon_2"
+                        android:contentDescription="polygon_2"
+                        android:layout_marginStart="46dp"
+                        android:layout_marginTop="280dp"
+                        android:layout_width="11.8dp"
+                        android:layout_height="8.36dp" />
+
+                    <TextView android:id="@+id/reder"
+                        android:layout_gravity="center_horizontal|center"
+                        android:gravity="center"
+                        android:textSize="12sp"
+                        android:textColor="@color/red"
+                        android:layout_marginLeft="11.5dp"
+                        android:layout_marginTop="84dp"
+                        android:layout_width="87.2dp"
+                        android:layout_height="19.2dp"
+                        android:text="@string/________string"
+                        />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout android:id="@+id/button"
+                    android:layout_marginTop="324dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    >
+
+                    <View   android:id="@+id/bg_button_ek1"
+                        android:background="@drawable/_bg__electro_analy_ek1_shape"
+                        android:backgroundTint="@color/white"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_width="54dp"
+                        android:layout_height="40dp"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/day"
+                        android:layout_width="36dp"
+                        android:layout_height="26dp"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:elevation="20dp"
+                        android:gravity="center"
+                        android:text="@string/day_string"
+                        android:textColor="@color/wh_consumed_color"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout android:id="@+id/button_ek2"
+                    android:layout_marginTop="324dp"
+                    android:layout_marginStart="120dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/_bg__electro_analy_ek1_shape"
+                    android:backgroundTint="@color/white"
+                    >
+
+                    <View   android:id="@+id/bg_button_ek3"
+                        android:background="@drawable/_bg__electro_analy_ek1_shape"
+                        android:backgroundTint="@color/white"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_width="64dp"
+                        android:layout_height="40dp" />
+
+                    <TextView android:id="@+id/week"
+                        android:textStyle="bold"
+                        android:textSize="12sp"
+                        android:textColor="@color/wh_consumed_color"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_width="44.2dp"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:layout_height="27.2dp"
+                        android:text="@string/week_string"
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout android:id="@+id/button_ek8"
+                    android:layout_marginTop="324dp"
+                    android:layout_marginStart="210dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/_bg__electro_analy_ek1_shape"
+                    android:backgroundTint="@color/white"
+                    >
+
+                    <View   android:id="@+id/bg_button_ek9"
+                        android:background="@drawable/_bg__electro_analy_ek1_shape"
+                        android:backgroundTint="@color/white"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_width="64dp"
+                        android:layout_height="40dp" />
+
+                    <TextView
+                        android:id="@+id/month"
+                        android:layout_width="44.2dp"
+                        android:layout_height="27.2dp"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:text="Month"
+                        android:textColor="@color/wh_consumed_color"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+
+
+                <RelativeLayout android:id="@+id/button_ek5"
+                    android:layout_marginTop="324dp"
+                    android:layout_marginStart="300dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/_bg__electro_analy_ek1_shape"
+                    android:backgroundTint="@color/white"
+                    >
+
+                    <View
+                        android:id="@+id/bg_button_ek6"
+                        android:layout_width="76dp"
+                        android:layout_height="40dp"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:background="@drawable/_bg__electro_analy_ek1_shape"
+                        android:backgroundTint="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/all_time"
+                        android:layout_width="56.2dp"
+                        android:layout_height="27.2dp"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:text="@string/all_time_string"
+                        android:textColor="@color/wh_consumed_color"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+                <View   android:id="@+id/rectangle_41"
+                    android:background="@drawable/_bg__electro_analy_ek1_shape"
+                    android:backgroundTint="@color/_bg__cons_ek1_color"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginTop="388dp"
+                    android:layout_width="279dp"
+                    android:layout_height="244dp"
+                    android:elevation="20dp"/>
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/barChart2"
+                    android:foregroundGravity="center"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginTop="388dp"
+                    android:layout_width="274dp"
+                    android:layout_height="239dp"
+                    android:elevation="20dp"/>
+
+
+                <TextView android:id="@+id/payment_ek1"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/screen_title_color"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="684dp"
+                    android:layout_width="140dp"
+                    android:layout_height="38dp"
+                    android:text="@string/payment_ek1_string"
+                    />
+
+
+                <RelativeLayout android:id="@+id/bill_box"
+                    android:layout_marginTop="748dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:elevation="20dp"
+                    >
+
+                    <View   android:id="@+id/bg_bill_box_ek1"
+                        android:background="@drawable/_bg__bill_box_ek1_shape"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_width="336dp"
+                        android:layout_height="167dp"
+
+                        />
+
+                    <TextView android:id="@+id/ek1"
+                        android:textStyle="bold"
+                        android:layout_gravity="center_horizontal|center"
+                        android:gravity="center"
+                        android:textSize="48sp"
+                        android:textColor="@color/screen_title_color"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_width="118dp"
+                        android:layout_height="70.8dp"
+                        android:text="@string/________ek1_string"
+                        />
+
+                    <TextView android:id="@+id/this_month"
+                        android:layout_gravity="center_horizontal|center"
+                        android:gravity="center"
+                        android:textSize="12sp"
+                        android:textColor="@color/wh_consumed_color"
+                        android:layout_marginLeft="14dp"
+                        android:layout_marginTop="112dp"
+                        android:layout_width="66.2dp"
+                        android:layout_height="19.2dp"
+                        android:text="@string/this_month_string"
+                        />
+
+                    <TextView android:id="@+id/bill_history"
+                        android:layout_gravity="center_horizontal|center"
+                        android:gravity="center"
+                        android:textSize="12sp"
+                        android:textColor="@color/_bg__amount_generated_ek1_color"
+                        android:layout_marginLeft="246dp"
+                        android:layout_marginTop="136dp"
+                        android:layout_width="74.2dp"
+                        android:layout_height="18.2dp"
+                        android:text="@string/bill_history_string"
+                        />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout android:id="@+id/content_2"
+                    android:layout_marginTop="947dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <View   android:id="@+id/bg_content_2_ek1"
+                        android:background="@drawable/_bg__content_1_ek1_shape"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_width="160dp"
+                        android:layout_height="96dp" />
+
+                    <TextView android:id="@+id/ek2"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:textColor="@color/screen_title_color"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_width="62dp"
+                        android:layout_height="30dp"
+                        android:text="@string/________ek2_string"
+                        />
+
+                    <TextView android:id="@+id/saved_for"
+                        android:textSize="12sp"
+                        android:textColor="@color/wh_consumed_color"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="44dp"
+                        android:layout_width="62.2dp"
+                        android:layout_height="19.2dp"
+                        android:text="@string/saved_for_string"
+                        />
+
+                    <TextView android:id="@+id/on_previous_month"
+                        android:textSize="12sp"
+                        android:textColor="@color/wh_consumed_color"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="64dp"
+                        android:layout_width="111.2dp"
+                        android:layout_height="19.2dp"
+                        android:text="@string/on_previous_month_string"
+                        />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout android:id="@+id/content_1"
+                    android:layout_marginTop="947dp"
+                    android:layout_marginStart="196dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <View   android:id="@+id/bg_content_1_ek1"
+                        android:background="@drawable/_bg__content_1_ek1_shape"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_width="160dp"
+                        android:layout_height="96dp" />
+
+                    <TextView android:id="@+id/ek3"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:textColor="@color/screen_title_color"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_width="62dp"
+                        android:layout_height="30dp"
+                        android:text="@string/________ek3_string"
+                        />
+
+                    <TextView android:id="@+id/saved_for_ek1"
+                        android:textSize="12sp"
+                        android:textColor="@color/wh_consumed_color"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="44dp"
+                        android:layout_width="62.2dp"
+                        android:layout_height="19.2dp"
+                        android:text="@string/saved_for_ek1_string"
+                        />
+
+                    <TextView android:id="@+id/on_previous_week"
+                        android:textSize="12sp"
+                        android:textColor="@color/wh_consumed_color"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="64dp"
+                        android:layout_width="105.2dp"
+                        android:layout_height="19.2dp"
+                        android:text="@string/on_previous_week_string"
+                        />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </ScrollView>
+
 
 </FrameLayout>

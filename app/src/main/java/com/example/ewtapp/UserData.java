@@ -4,7 +4,7 @@ public class UserData {
     String Phone_no,username,password;
     String electricity,water;
 
-    public UserData(String Phone_no,String username, String password,String electricity,String water) {
+    public UserData(String Phone_no,String username, String password) {
         this.Phone_no=Phone_no;
         this.username = username;
         this.password = password;

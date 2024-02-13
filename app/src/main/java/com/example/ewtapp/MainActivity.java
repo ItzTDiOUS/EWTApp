@@ -8,27 +8,42 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.example.ewtapp.R;
+
+import android.os.Bundle;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.appcompat.view.menu.MenuView;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-import com.github.mikephil.charting.components.YAxis;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,8 +55,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import java.util.ArrayList;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.Objects;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -51,30 +73,37 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
+
+
 import java.util.List;
-
-
 
 
 public class MainActivity extends AppCompatActivity {
     private boolean doubleBackToExitPressedOnce = false;
     private LineChart chartElectricity;
     private LineChart chartWater;
+
     public long electricityLimit;
     public long waterLimit;
-
     private List<Entry> electricityEntries;
-    private TextView ee, ww, user;
+    private List<Entry> waterEntries;
+    private long lastEntryTimestamp;
+    private TextView ee, ww, user,displayUsername,ve,fw;
     private PopupWindow overlayPopup;
+    private long startTime;
 
     private String Username;
 
-    private String Electricity_data, Water_data;
+    private String Electricity_data, Water_data, Electricity_voltage,Water_flow;
 
     private static final String FIREBASE_ADMIN_NODE = "Admin";
     private static final String FIREBASE_USERNAME_FIELD = "username";
     private static final String FIREBASE_ELECTRICITY_FIELD = "electricity";
     private static final String FIREBASE_WATER_FIELD = "water";
+    private long lastEntryTimestamp2;
+    private static final String FIREBASE_ELECTRICITY_CHILD_NODE_VOLTAGE="voltage";
+    private static final String FIREBASE_WATER_CHILD_NODE_FLOW="flow_rate_lps";
+
 
     private static final String FIREBASE_ELECTRICITY_CHILD_NODE = "total_energy";
     private static final String FIREBASE_WATER_CHILD_NODE = "total_water_used";
@@ -84,12 +113,14 @@ public class MainActivity extends AppCompatActivity {
 
     private TextInputLayout ElecLimitText,WatLimText;
 
+    public static int home_i;
 
     int c;
 
     public MainActivity() {
     }
-
+    private ElectricityFragment electricityFragment;
+    private WaterFragment waterFragment;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,14 +131,65 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.home);
 
+        electricityFragment = new ElectricityFragment();
+        waterFragment = new WaterFragment();
+
+
+
+
+
+//
+
+
+
+        displayUsername=findViewById(R.id.naam);
+
+        Username = getLoginStatus();
+
+        getLimitsFromSharedPreferences();
+
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNav);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemId = item.getItemId();
+                if (itemId == R.id.home_icon) {
+                    openMainActivity();
+                    // Do nothing or add logic for refreshing your activity
+                } else if (itemId == R.id.electricity_icon) {
+                    replaceFragment(new ElectricityFragment());
+                } else if (itemId == R.id.blur_icon) {
+                    replaceFragment(new WaterFragment());
+                } else if (itemId == R.id.settings_icon) {
+                    showOverlayLayout(item);
+                }
+                return true;
+            }
+        });
+
+
+
+
+
+
         chartElectricity = findViewById(R.id.electricity_chart);
-        electricityEntries = new ArrayList<>();
         chartWater = findViewById(R.id.water_chart);
 
         // Customize chart settings if needed
-
         customizeChart(chartElectricity);
         customizeChart(chartWater);
+
+        // Customize chart settings if needed
+
+        TextView videosTextView = findViewById(R.id.logout_button);
+        videosTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openVideosActivity();
+            }
+        });
 
         // Fetch data from Firebase and update charts
 
@@ -129,7 +211,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        analyzeWat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenLimPage();
+            }
+        });
 
 
 
@@ -146,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
                 .setContentText("ALERT")
                 .setSubText("You Have Exceeded Your Electricity/Water Usage");
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             builder.setChannelId(CHANNEL_ID);
         }
 
@@ -155,21 +242,45 @@ public class MainActivity extends AppCompatActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        Username = getLoginStatus();
-        Button refresh = findViewById(R.id.refresh_button);
+
+
         ee = findViewById(R.id.electricity_data);
         ww = findViewById(R.id.water_data);
+        ve=findViewById(R.id.voltage);
+        fw=findViewById(R.id.flow);
         user=findViewById(R.id.naam);
-        Button signoutButton = findViewById(R.id.logout_button);
-        signoutButton.setOnClickListener(v -> logoutAndNavigateToLogin());
 
-        refresh.setOnClickListener(v -> fetchDataFromFirebase());
+
 
         fetchDataFromFirebase(); // Initial data fetch
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
     }
+    private void openMainActivity() {
+        // Create an intent to open the MainActivity
+        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+
+
+
+    private void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentTransaction.replace(R.id.frame_layout, fragment); // Assuming R.id.frame_layout is your fragment container
+        fragmentTransaction.commit();
+    }
+
+
+
+    private void openVideosActivity() {
+            Intent intent = new Intent(getApplicationContext(), VideoPlayer.class);
+            startActivity(intent);
+        }
+
+
 
     private void OpenLimPage() {
         Intent intent=new Intent(getApplicationContext(), LimPage.class);
@@ -177,81 +288,7 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    private void customizeChart(@NonNull LineChart chart) {
-        // Customize chart settings if needed
-        // For example, enable touch gestures, set X-axis position, etc.
 
-        chart.setTouchEnabled(true);
-        chart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
-
-        // Get the left Y-axis
-        YAxis leftAxis = chart.getAxisLeft();
-
-        // Enable the left Y-axis
-        leftAxis.setEnabled(true);
-
-        // Get the right Y-axis
-        YAxis rightAxis = chart.getAxisRight();
-
-        // Disable the right Y-axis
-        rightAxis.setEnabled(false);
-
-
-        // Add other customization settings if needed
-    }
-
-
-    private void updateCharts(long electricityValue, long waterValue) {
-        // Update the LineCharts with new data points
-        updateChart(chartElectricity, electricityValue, "Electricity");
-        updateChart(chartWater, waterValue, "Water");
-    }
-    private void updateChart(LineChart chart, long value, String label) {
-        LineData data = chart.getData();
-
-        if (data == null) {
-            data = new LineData();
-            chart.setData(data);
-        }
-
-        ILineDataSet set = data.getDataSetByIndex(0);
-
-        if (set != null && set.getEntryCount() > 6) {
-            // Remove the oldest point
-            Entry removedEntry = set.getEntryForIndex(0);
-            set.removeEntry(removedEntry);
-
-            // Adjust x-values of remaining entries
-            List<Entry> entries = ((LineDataSet) set).getValues();
-
-            for (Entry entry : entries) {
-                entry.setX(entry.getX() - 1f);
-            }
-        }
-
-        if (set == null) {
-            set = createDataSet(label);
-            data.addDataSet(set);
-        }
-
-        // Add a new entry to the dataset
-        data.addEntry(new Entry(set.getEntryCount(), value), 0);
-
-        // Notify the chart that the data has changed
-        chart.notifyDataSetChanged();
-        chart.invalidate();
-    }
-
-    private LineDataSet createDataSet(String label) {
-        // Create a LineDataSet with the provided label
-        LineDataSet set = new LineDataSet(null, label);
-        set.setDrawCircles(true);
-        set.setDrawValues(true);
-        set.setCircleRadius(4f);
-        set.setLineWidth(2f);
-        set.setColor(Color.BLUE);
-        return set;
-    }
 
 
 
@@ -277,11 +314,13 @@ public class MainActivity extends AppCompatActivity {
                     // Convert Long values to String
                     Long electricityLong = userSnapshot.child(FIREBASE_ELECTRICITY_FIELD).child(FIREBASE_ELECTRICITY_CHILD_NODE).getValue(Long.class);
                     Long waterLong = userSnapshot.child(FIREBASE_WATER_FIELD).child(FIREBASE_WATER_CHILD_NODE).getValue(Long.class);
-
+                    Long electricityvoltageLong = userSnapshot.child(FIREBASE_ELECTRICITY_FIELD).child(FIREBASE_ELECTRICITY_CHILD_NODE_VOLTAGE).getValue(Long.class);
+                    Long waterLong_flow = userSnapshot.child(FIREBASE_WATER_FIELD).child(FIREBASE_WATER_CHILD_NODE_FLOW).getValue(Long.class);
                     // Convert Long to String
                     Electricity_data = (electricityLong != null) ? String.valueOf(electricityLong) : "";
                     Water_data = (waterLong != null) ? String.valueOf(waterLong) : "";
-
+                    Electricity_voltage= (electricityvoltageLong != null) ? String.valueOf(electricityvoltageLong) : "";
+                    Water_flow = (waterLong_flow != null) ? String.valueOf(waterLong_flow) : "";
                     // Check if the limits are exceeded
                     checkLimitsAndShowOverlay(electricityLong, waterLong);
 
@@ -292,20 +331,106 @@ public class MainActivity extends AppCompatActivity {
                     updateCharts(electricityLong != null ? electricityLong : 0,
                             waterLong != null ? waterLong : 0);
 
-                    chartElectricity.notifyDataSetChanged();
-                    chartElectricity.invalidate();
 
-                    chartWater.notifyDataSetChanged();
-                    chartWater.invalidate();
+
+
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 // Handle onCancelled if needed
+                // Handle onCancelled if needed
             }
         });
     }
+    private String getCurrentDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // You can customize the date format
+        return sdf.format(new Date());
+    }
+
+
+
+
+
+    private void updateCharts(long electricityValue, long waterValue) {
+        // Check if 24 hours have passed since the last entry
+        if (System.currentTimeMillis() - lastEntryTimestamp >= 24 * 60 * 60 * 1000) {
+            // Clear all data points if 24 hours have passed
+            clearDataSets(chartElectricity);
+            clearDataSets(chartWater);
+
+            // Update the last entry timestamp
+            lastEntryTimestamp = System.currentTimeMillis();
+        }
+
+        // Update the LineCharts with new data points
+        updateChart(chartElectricity, electricityValue, "Electricity");
+        updateChart(chartWater, waterValue, "Water");
+
+        // Notify the chart that the data has changed
+        chartElectricity.notifyDataSetChanged();
+        chartElectricity.invalidate();
+
+        chartWater.notifyDataSetChanged();
+        chartWater.invalidate();
+    }
+
+    private void clearDataSets(LineChart chart) {
+        LineData data = chart.getData();
+        if (data != null) {
+            data.clearValues();
+        }
+    }
+
+    private void updateChart(LineChart chart, long value, String label) {
+        // Update the LineChart with a new data point
+
+        LineData data = chart.getData();
+
+        if (data == null) {
+            data = new LineData();
+            chart.setData(data);
+        }
+
+        ILineDataSet set = data.getDataSetByIndex(0);
+
+        if (set == null) {
+            set = createDataSet(label);
+            data.addDataSet(set);
+        }
+
+        // Add a new entry to the dataset
+        data.addEntry(new Entry(set.getEntryCount(), value), 0);
+
+        // Notify the chart that the data has changed
+        chart.notifyDataSetChanged();
+        chart.invalidate();
+    }
+
+    private void customizeChart(LineChart chart) {
+        // Customize chart settings if needed
+        // For example, enable touch gestures, set X-axis position, etc.
+        chart.setTouchEnabled(true);
+        chart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+        chart.animateX(1000);
+        chart.getAxisRight().setEnabled(false);
+        chart.getDescription().setText("Time ->");
+
+        // Add other customization settings if needed
+    }
+
+    private LineDataSet createDataSet(String label) {
+        // Create a LineDataSet with default settings
+        LineDataSet set = new LineDataSet(null, label);
+        set.setDrawCircles(false);
+        set.setDrawValues(false);
+        set.setCircleRadius(0f);
+        set.setLineWidth(1f);
+        set.setColor(Color.BLUE);
+        return set;
+    }
+
 
     private void checkLimitsAndShowOverlay(Long electricity, Long water) {
 
@@ -324,14 +449,15 @@ public class MainActivity extends AppCompatActivity {
     private void updateUI() {
         ee.setText(String.format("%s Kwh", Electricity_data != null ? Electricity_data : ""));
         ww.setText(String.format("%s L", Water_data != null ? Water_data : ""));
-
+        ve.setText(String.format("%s V", Electricity_voltage != null ? Electricity_voltage : ""));
+        fw.setText(String.format("%s L/min", Water_flow != null ? Water_flow : ""));
+        displayUsername.setText(String.format("Hello, %s", Username != null ? Username : ""));
         fetchDataFromFirebase();
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        if (doubleBackToExitPressedOnce) {
+                if (doubleBackToExitPressedOnce) {
             finishAffinity();
             return;
         }
@@ -531,5 +657,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void getLimitsFromSharedPreferences() {
+        // Get the SharedPreferences instance
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+
+        // Retrieve electricitylimvalue, default value is 0 if not found
+        electricityLimit = sharedPreferences.getLong("electricitylimvalue", 0);
+
+        // Retrieve waterlimvalue, default value is 0 if not found
+        waterLimit = sharedPreferences.getLong("waterlimvalue", 0);
+
+        // Now you have both values
+        // You can use savedElectricityLimit and savedWaterLimit as needed
+        // For example, you can display them, perform calculations, etc.
+    }
+
 
 }
