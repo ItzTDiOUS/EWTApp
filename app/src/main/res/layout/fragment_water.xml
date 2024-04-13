@@ -30,8 +30,8 @@
                     android:contentDescription="vector"
                     android:layout_marginStart="23.6dp"
                     android:layout_marginTop="70.46dp"
-                    android:layout_width="16.8dp"
-                    android:layout_height="11.09dp" />
+                    android:layout_width="20.8dp"
+                    android:layout_height="20.09dp" />
 
 
 
@@ -57,7 +57,7 @@
 
                     <View   android:id="@+id/bg_amount_generated_ek1"
                         android:background="@drawable/_bg__electro_analy_ek1_shape"
-                        android:backgroundTint="@color/white"
+                        android:backgroundTint="@color/background"
                         android:layout_marginStart="0dp"
                         android:layout_marginTop="0dp"
                         android:layout_width="wrap_content"
@@ -76,18 +76,18 @@
                         android:text="@string/wh_consumed_string"
                         />
 
-                    <TextView android:id="@+id/hiuahud"
-                        android:textStyle="bold"
+                    <TextView
+                        android:id="@+id/hiuahud"
+                        android:layout_width="102dp"
+                        android:layout_height="75dp"
                         android:layout_gravity="center_horizontal|center"
-                        android:gravity="center"
-                        android:textSize="48sp"
-                        android:textColor="@color/_bg__amount_generated_ek1_color"
-
                         android:layout_marginTop="16dp"
-                        android:layout_width="118dp"
-                        android:layout_height="70.8dp"
-                        android:text="----"
-                        />
+                        android:gravity="center"
+
+                        android:text="84 L"
+                        android:textColor="@color/_bg__amount_generated_ek1_color"
+                        android:textSize="48sp"
+                        android:textStyle="bold" />
 
                     <ImageView android:id="@+id/polygon_2"
                         android:src="@drawable/polygon_2"
@@ -101,12 +101,13 @@
                         android:layout_gravity="center_horizontal|center"
                         android:gravity="center"
                         android:textSize="12sp"
+                        android:textStyle="bold"
                         android:textColor="@color/red"
                         android:layout_marginLeft="11.5dp"
                         android:layout_marginTop="84dp"
                         android:layout_width="87.2dp"
                         android:layout_height="19.2dp"
-                        android:text="@string/________string"
+                        android:text="12 L"
                         />
 
                 </RelativeLayout>
@@ -250,18 +251,18 @@
                 <View   android:id="@+id/rectangle_41"
                     android:background="@drawable/_bg__electro_analy_ek1_shape"
                     android:backgroundTint="@color/_bg__cons_ek1_color"
-                    android:layout_marginStart="60dp"
+                    android:layout_marginStart="50dp"
                     android:layout_marginTop="388dp"
-                    android:layout_width="279dp"
-                    android:layout_height="244dp"
+                    android:layout_width="319dp"
+                    android:layout_height="254dp"
                     android:elevation="20dp"/>
                 <com.github.mikephil.charting.charts.BarChart
                     android:id="@+id/barChart2"
                     android:foregroundGravity="center"
-                    android:layout_marginStart="60dp"
+                    android:layout_marginStart="50dp"
                     android:layout_marginTop="388dp"
-                    android:layout_width="274dp"
-                    android:layout_height="239dp"
+                    android:layout_width="314dp"
+                    android:layout_height="249dp"
                     android:elevation="20dp"/>
 
 

@@ -230,8 +230,8 @@ public class MainActivity extends AppCompatActivity {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setLargeIcon(largeIcon)
                 .setSmallIcon(R.drawable.ewtlogo)
-                .setContentText("ALERT")
-                .setSubText("You Have Exceeded Your Electricity/Water Usage");
+                .setContentText("You Have Exceeded Your Electricity/Water Usage")
+                .setSubText("ALERT!");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             builder.setChannelId(CHANNEL_ID);
